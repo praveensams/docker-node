@@ -1,0 +1,8 @@
+import re
+s=open("/etc/passwd","r")
+
+for i in s.readlines():
+	if "bash" in i:
+		h=re.search(r'.*(buntu)(.*)',i)
+		if h:
+			print h.group(2)

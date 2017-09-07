@@ -1,0 +1,9 @@
+from flask import Flask
+import re
+import docker
+l={}
+
+client = docker.from_env()
+for i in client.containers.list():
+	l=i
+	print l

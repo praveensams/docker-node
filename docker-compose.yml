@@ -1,0 +1,47 @@
+version: '3.0'
+services:
+
+  apache1:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports: 
+      - 80:80
+    container_name: "apacheone"
+    links: 
+        - apache2:apache2
+    networks:
+      app_net:
+        ipv4_address: 192.168.44.4
+
+  apache2:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports: 
+      - 81:80
+    container_name: "apachetwo"
+    networks:
+      app_net:
+        ipv4_address: 192.168.44.3
+
+  apache3:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports: 
+      - 82:80
+    container_name: "apachethree"
+    networks:
+      app_net:
+        ipv4_address: 192.168.44.2
+
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 192.168.44.0/24

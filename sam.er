@@ -1,0 +1,6 @@
+s=open("/etc/passwd","r")
+
+for i in s.readlines():
+	
+	if  ( "bash" , "ubunt" ) in i:
+		print i
